@@ -5,7 +5,7 @@ require 'woocommerce_api'
 require 'down'
 
 class Automator
-  IMAGES_FILE_PATH = "#{Rails.root}/app/assets/images/"
+  IMAGES_FILE_PATH = "#{Rails.root}/public/images/"
   MAX_FILE_SIZE = 3_145_728 # 3MB 
   
   def initialize
