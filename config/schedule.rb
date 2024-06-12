@@ -18,7 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 25.minutes do
-# every :day, at: '00:00' do
+every :day, at: '01:00' do
   rake 'automated_tasks:update_products', output: 'log/cron.log'
 end

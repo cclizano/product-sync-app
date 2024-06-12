@@ -45,6 +45,6 @@ class WooConsumer
   end
 
   def options
-    { wp_api: true, version: VERSION}
+    { wp_api: true, version: VERSION, verify_ssl: false, validate_url: false, query_string_auth: true }
   end
 end
