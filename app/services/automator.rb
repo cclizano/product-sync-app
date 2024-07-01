@@ -35,9 +35,6 @@ class Automator
     {
       name: product['nombre'],
       sku: product['codigo'],
-      sale_price: product['precio'],
-      price: product['precio'],
-      regular_price: product['precio'],
       images: images_array_saving_locally(product),
       description: product['descripcion']
     }
@@ -54,6 +51,6 @@ class Automator
   end
   
   def save_image(image, file_path)
-    Down.download(image['img'], destination: file_path, max_size: MAX_FILE_SIZE)
+    Down.download(image['img'], destination: file_path, max_size: MAX_FILE_SIZE) unless File.exist?(file_path)
   end
 end
