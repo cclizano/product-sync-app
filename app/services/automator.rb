@@ -20,8 +20,8 @@ class Automator
     product_list.each do |product|
       product_data = sanitized_product_data(product) 
 
-      woo_product_id =  @woo_consumer.get_product_id_by_sku_code(product_data[:sku])
-      woo_product_id ?  @woo_consumer.update_product(woo_product_id, product_data) :  @woo_consumer.create_product(product_data)
+      woo_product_id =  @woo_consumer.get_product_id_by_sku_code(product['codigo'])
+      woo_product_id ?  @woo_consumer.update_product(woo_product_id, no_price_product_data(product)) :  @woo_consumer.create_product(product_data)
       woo_product_id = nil
     end
 
@@ -32,6 +32,18 @@ class Automator
   private
 
   def sanitized_product_data(product)
+    {
+      name: product['nombre'],
+      sku: product['codigo'],
+      sale_price: product['precio'],
+      price: product['precio'],
+      regular_price: product['precio'],
+      images: images_array_saving_locally(product),
+      description: product['descripcion']
+    }
+  end
+
+  def no_price_product_data(product)
     {
       name: product['nombre'],
       sku: product['codigo'],
