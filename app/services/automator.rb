@@ -7,7 +7,7 @@ require 'down'
 class Automator
   IMAGES_FILE_PATH = "#{Rails.root}/public/images/"
   PUBLIC_FILE_PATH = "http://142.44.163.51:3000/images/"
-  MAX_FILE_SIZE = 3_145_728 # 3MB 
+  MAX_FILE_SIZE = 8_388_608 # 8MB 
   
   def initialize
     @woo_consumer = WooConsumer.new
@@ -21,7 +21,7 @@ class Automator
       product_data = sanitized_product_data(product) 
 
       woo_product_id =  @woo_consumer.get_product_id_by_sku_code(product['codigo'])
-      woo_product_id ?  @woo_consumer.update_product(woo_product_id, no_price_product_data(product)) :  @woo_consumer.create_product(product_data)
+      woo_product_id ?  @woo_consumer.update_product(woo_product_id, no_price_product_data(product)) : @woo_consumer.create_product(product_data)
       woo_product_id = nil
     end
 
